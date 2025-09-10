@@ -1,0 +1,484 @@
+{
+	"phoneme": {
+		"consonants": {
+			"k": [
+				"硬い",
+				"鋭い",
+				"明確"
+			],
+			"g": [
+				"重い",
+				"濁った",
+				"力強い"
+			],
+			"s": [
+				"鋭い",
+				"繊細",
+				"軽快"
+			],
+			"z": [
+				"重い",
+				"ざらついた",
+				"力強い"
+			],
+			"t": [
+				"軽快",
+				"硬い",
+				"切れ味"
+			],
+			"d": [
+				"重い",
+				"力強い",
+				"安定"
+			],
+			"n": [
+				"柔らかい",
+				"親しみやすい",
+				"穏やか"
+			],
+			"h": [
+				"軽やか",
+				"風のような",
+				"薄い"
+			],
+			"b": [
+				"重厚",
+				"力強い",
+				"安定"
+			],
+			"p": [
+				"明るい",
+				"軽快",
+				"弾ける"
+			],
+			"m": [
+				"優しい",
+				"柔らかい",
+				"包み込む"
+			],
+			"r": [
+				"流れる",
+				"軽快",
+				"不安定"
+			],
+			"w": [
+				"軽やか",
+				"広がる",
+				"柔らかい"
+			],
+			"y": [
+				"細い",
+				"軽やか",
+				"柔らかい"
+			]
+		},
+		"vowels": {
+			"a": [
+				"明るい",
+				"大きい",
+				"開放的"
+			],
+			"i": [
+				"小さい",
+				"鋭い",
+				"繊細"
+			],
+			"u": [
+				"丸い",
+				"奥行き",
+				"柔らかい"
+			],
+			"e": [
+				"広がり",
+				"軽さ",
+				"中庸"
+			],
+			"o": [
+				"重厚",
+				"落ち着き",
+				"丸み"
+			]
+		},
+		"special": {
+			"ー": [
+				"引き延ばす",
+				"余韻",
+				"強調"
+			],
+			"っ": [
+				"弾む",
+				"リズム",
+				"強調"
+			],
+			"ん": [
+				"余韻",
+				"締まり",
+				"安定"
+			]
+		}
+	},
+	"structure": {
+		"repetition": {
+			"double": [
+				"リズム感",
+				"親しみやすさ",
+				"軽快"
+			],
+			"triple_or_more": [
+				"強調",
+				"冗長",
+				"遊び心"
+			]
+		},
+		"ending": {
+			"vowel": [
+				"開放感",
+				"軽やかさ",
+				"広がり"
+			],
+			"n": [
+				"余韻",
+				"安定感",
+				"締まり"
+			],
+			"っ": [
+				"途切れ",
+				"緊張感",
+				"強調"
+			],
+			"long_vowel": [
+				"余韻",
+				"伸びやかさ",
+				"強調"
+			]
+		},
+		"length": {
+			"short": [
+				"力強い",
+				"単純",
+				"直接的"
+			],
+			"medium": [
+				"バランス",
+				"自然",
+				"覚えやすい"
+			],
+			"long": [
+				"優雅",
+				"複雑",
+				"流れる"
+			]
+		}
+	},
+	"rhyme": {
+		"head": [
+			"統一感",
+			"強調",
+			"リズム"
+		],
+		"internal": [
+			"響きの一体感",
+			"まとまり",
+			"遊び心"
+		],
+		"end": [
+			"心地よさ",
+			"リズム感",
+			"まとまり"
+		]
+	},
+	"start": {
+		"consonants": {
+			"k": [
+				"強い開始",
+				"シャープ",
+				"活発"
+			],
+			"g": [
+				"重い開始",
+				"濁り",
+				"堂々"
+			],
+			"s": [
+				"鋭い開始",
+				"軽やか",
+				"流れる"
+			],
+			"t": [
+				"切れ味のある開始",
+				"テンポ感",
+				"明快"
+			],
+			"d": [
+				"安定した開始",
+				"力強い",
+				"重厚"
+			],
+			"n": [
+				"柔らかい開始",
+				"親しみやすい",
+				"穏やか"
+			],
+			"h": [
+				"軽やかな開始",
+				"薄い",
+				"風のよう"
+			],
+			"b": [
+				"重厚な開始",
+				"落ち着いた",
+				"安定"
+			],
+			"p": [
+				"弾ける開始",
+				"明るい",
+				"軽快"
+			],
+			"m": [
+				"優しい開始",
+				"包み込む",
+				"柔らかい"
+			],
+			"r": [
+				"流れる開始",
+				"軽快",
+				"不安定"
+			],
+			"w": [
+				"広がる開始",
+				"軽やか",
+				"柔らかい"
+			],
+			"y": [
+				"細い開始",
+				"軽やか",
+				"繊細"
+			]
+		},
+		"vowels": {
+			"a": [
+				"明るい始まり",
+				"開放的",
+				"堂々"
+			],
+			"i": [
+				"鋭い始まり",
+				"細い",
+				"繊細"
+			],
+			"u": [
+				"丸みのある始まり",
+				"奥行き",
+				"柔らかい"
+			],
+			"e": [
+				"軽やかな始まり",
+				"広がる",
+				"中庸"
+			],
+			"o": [
+				"重厚な始まり",
+				"落ち着いた",
+				"丸み"
+			]
+		}
+	},
+	"scoring": {
+		"phoneme": {
+			"consonants": {
+				"k": {
+					"hardness": { "score": 0.9, "weight": 1.0, "source": "音響学的特徴：破裂音" },
+					"sharpness": { "score": 0.8, "weight": 0.9, "source": "無声破裂音の特性" },
+					"brightness": { "score": 0.7, "weight": 0.8, "source": "高周波成分" },
+					"heaviness": { "score": 0.3, "weight": 0.7, "source": "軽快な印象" },
+					"softness": { "score": 0.2, "weight": 0.9, "source": "破裂音の対極" }
+				},
+				"g": {
+					"hardness": { "score": 0.8, "weight": 1.0, "source": "有声破裂音" },
+					"heaviness": { "score": 0.9, "weight": 1.0, "source": "低周波成分" },
+					"sharpness": { "score": 0.4, "weight": 0.8, "source": "有声音の丸み" },
+					"brightness": { "score": 0.3, "weight": 0.8, "source": "濁音の特性" },
+					"softness": { "score": 0.3, "weight": 0.8, "source": "破裂音だが有声" }
+				},
+				"s": {
+					"sharpness": { "score": 0.9, "weight": 1.0, "source": "摩擦音の特性" },
+					"brightness": { "score": 0.8, "weight": 0.9, "source": "高周波摩擦音" },
+					"hardness": { "score": 0.6, "weight": 0.7, "source": "継続的摩擦" },
+					"heaviness": { "score": 0.2, "weight": 0.8, "source": "軽快な響き" },
+					"softness": { "score": 0.3, "weight": 0.7, "source": "摩擦音の鋭さ" }
+				},
+				"z": {
+					"heaviness": { "score": 0.8, "weight": 1.0, "source": "有声摩擦音" },
+					"hardness": { "score": 0.7, "weight": 0.9, "source": "摩擦の持続" },
+					"sharpness": { "score": 0.6, "weight": 0.8, "source": "有声化による丸み" },
+					"brightness": { "score": 0.4, "weight": 0.8, "source": "濁音の特性" },
+					"softness": { "score": 0.3, "weight": 0.7, "source": "摩擦音の特性" }
+				},
+				"t": {
+					"hardness": { "score": 0.9, "weight": 1.0, "source": "無声破裂音" },
+					"sharpness": { "score": 0.8, "weight": 0.9, "source": "瞬間的破裂" },
+					"brightness": { "score": 0.7, "weight": 0.8, "source": "明快な響き" },
+					"heaviness": { "score": 0.2, "weight": 0.8, "source": "軽快な印象" },
+					"softness": { "score": 0.1, "weight": 0.9, "source": "破裂音の対極" }
+				},
+				"d": {
+					"heaviness": { "score": 0.9, "weight": 1.0, "source": "有声破裂音" },
+					"hardness": { "score": 0.8, "weight": 0.9, "source": "破裂音の特性" },
+					"softness": { "score": 0.4, "weight": 0.7, "source": "有声化による丸み" },
+					"brightness": { "score": 0.3, "weight": 0.8, "source": "濁音の特性" },
+					"sharpness": { "score": 0.4, "weight": 0.8, "source": "有声音の丸み" }
+				},
+				"n": {
+					"softness": { "score": 0.9, "weight": 1.0, "source": "鼻音の特性" },
+					"heaviness": { "score": 0.6, "weight": 0.8, "source": "共鳴音" },
+					"brightness": { "score": 0.5, "weight": 0.7, "source": "中性的響き" },
+					"hardness": { "score": 0.2, "weight": 0.8, "source": "流音的特性" },
+					"sharpness": { "score": 0.1, "weight": 0.9, "source": "鼻音の丸み" }
+				},
+				"h": {
+					"softness": { "score": 0.8, "weight": 1.0, "source": "摩擦の弱さ" },
+					"brightness": { "score": 0.7, "weight": 0.8, "source": "軽やかな響き" },
+					"heaviness": { "score": 0.1, "weight": 1.0, "source": "最軽量音" },
+					"hardness": { "score": 0.2, "weight": 0.7, "source": "弱摩擦音" },
+					"sharpness": { "score": 0.3, "weight": 0.6, "source": "柔らかい摩擦" }
+				},
+				"b": {
+					"heaviness": { "score": 0.9, "weight": 1.0, "source": "有声破裂音" },
+					"hardness": { "score": 0.8, "weight": 0.9, "source": "破裂音の特性" },
+					"softness": { "score": 0.4, "weight": 0.7, "source": "有声化による丸み" },
+					"brightness": { "score": 0.3, "weight": 0.8, "source": "濁音の特性" },
+					"sharpness": { "score": 0.3, "weight": 0.8, "source": "有声音の丸み" }
+				},
+				"p": {
+					"brightness": { "score": 0.9, "weight": 1.0, "source": "無声破裂音の明快さ" },
+					"hardness": { "score": 0.8, "weight": 0.9, "source": "破裂音の特性" },
+					"sharpness": { "score": 0.7, "weight": 0.8, "source": "瞬間的破裂" },
+					"heaviness": { "score": 0.2, "weight": 0.8, "source": "軽快な印象" },
+					"softness": { "score": 0.2, "weight": 0.8, "source": "破裂音の対極" }
+				},
+				"m": {
+					"softness": { "score": 0.9, "weight": 1.0, "source": "鼻音の特性" },
+					"heaviness": { "score": 0.6, "weight": 0.8, "source": "共鳴音" },
+					"brightness": { "score": 0.5, "weight": 0.7, "source": "中性的響き" },
+					"hardness": { "score": 0.2, "weight": 0.8, "source": "流音的特性" },
+					"sharpness": { "score": 0.1, "weight": 0.9, "source": "鼻音の丸み" }
+				},
+				"r": {
+					"softness": { "score": 0.7, "weight": 0.9, "source": "流音の特性" },
+					"brightness": { "score": 0.6, "weight": 0.8, "source": "軽快な響き" },
+					"heaviness": { "score": 0.4, "weight": 0.7, "source": "流動的特性" },
+					"hardness": { "score": 0.3, "weight": 0.7, "source": "流音の柔軟性" },
+					"sharpness": { "score": 0.4, "weight": 0.6, "source": "振動音の特性" }
+				},
+				"w": {
+					"softness": { "score": 0.9, "weight": 1.0, "source": "半母音の特性" },
+					"brightness": { "score": 0.6, "weight": 0.8, "source": "軽やかな響き" },
+					"heaviness": { "score": 0.3, "weight": 0.8, "source": "軽量音" },
+					"hardness": { "score": 0.1, "weight": 0.9, "source": "最柔軟音" },
+					"sharpness": { "score": 0.2, "weight": 0.8, "source": "半母音の丸み" }
+				},
+				"y": {
+					"softness": { "score": 0.8, "weight": 1.0, "source": "半母音の特性" },
+					"brightness": { "score": 0.7, "weight": 0.9, "source": "高い響き" },
+					"heaviness": { "score": 0.2, "weight": 0.9, "source": "軽量音" },
+					"hardness": { "score": 0.2, "weight": 0.8, "source": "半母音の柔軟性" },
+					"sharpness": { "score": 0.5, "weight": 0.7, "source": "細い響き" }
+				}
+			},
+			"vowels": {
+				"a": {
+					"brightness": { "score": 0.9, "weight": 1.0, "source": "開口度最大" },
+					"heaviness": { "score": 0.7, "weight": 0.8, "source": "低いフォルマント" },
+					"softness": { "score": 0.6, "weight": 0.7, "source": "母音の特性" },
+					"hardness": { "score": 0.3, "weight": 0.6, "source": "開放的響き" },
+					"sharpness": { "score": 0.4, "weight": 0.7, "source": "明瞭な響き" }
+				},
+				"i": {
+					"sharpness": { "score": 0.9, "weight": 1.0, "source": "最高フォルマント" },
+					"brightness": { "score": 0.8, "weight": 0.9, "source": "高い響き" },
+					"heaviness": { "score": 0.1, "weight": 1.0, "source": "最軽量母音" },
+					"hardness": { "score": 0.6, "weight": 0.7, "source": "狭い開口" },
+					"softness": { "score": 0.5, "weight": 0.6, "source": "母音の特性" }
+				},
+				"u": {
+					"softness": { "score": 0.9, "weight": 1.0, "source": "丸唇母音" },
+					"heaviness": { "score": 0.8, "weight": 0.9, "source": "低いフォルマント" },
+					"brightness": { "score": 0.2, "weight": 0.9, "source": "暗い響き" },
+					"hardness": { "score": 0.2, "weight": 0.8, "source": "丸み" },
+					"sharpness": { "score": 0.1, "weight": 0.9, "source": "最丸い音" }
+				},
+				"e": {
+					"brightness": { "score": 0.7, "weight": 0.8, "source": "中程度の開口" },
+					"softness": { "score": 0.6, "weight": 0.7, "source": "母音の特性" },
+					"heaviness": { "score": 0.4, "weight": 0.7, "source": "中性的響き" },
+					"hardness": { "score": 0.4, "weight": 0.6, "source": "中程度開口" },
+					"sharpness": { "score": 0.5, "weight": 0.7, "source": "中性的響き" }
+				},
+				"o": {
+					"heaviness": { "score": 0.9, "weight": 1.0, "source": "低フォルマント" },
+					"softness": { "score": 0.8, "weight": 0.9, "source": "丸唇母音" },
+					"brightness": { "score": 0.3, "weight": 0.8, "source": "暗い響き" },
+					"hardness": { "score": 0.3, "weight": 0.7, "source": "丸み" },
+					"sharpness": { "score": 0.2, "weight": 0.8, "source": "丸い響き" }
+				}
+			}
+		},
+		"structure": {
+			"repetition": {
+				"double": {
+					"brightness": { "score": 0.8, "weight": 0.8, "source": "リズミカルな印象" },
+					"softness": { "score": 0.7, "weight": 0.7, "source": "親しみやすさ" },
+					"heaviness": { "score": 0.3, "weight": 0.6, "source": "軽快感" },
+					"hardness": { "score": 0.4, "weight": 0.6, "source": "繰り返し効果" },
+					"sharpness": { "score": 0.5, "weight": 0.6, "source": "リズムの切れ" }
+				},
+				"triple_or_more": {
+					"brightness": { "score": 0.6, "weight": 0.7, "source": "遊び心" },
+					"softness": { "score": 0.8, "weight": 0.8, "source": "親しみやすさ増" },
+					"heaviness": { "score": 0.5, "weight": 0.7, "source": "冗長感" },
+					"hardness": { "score": 0.3, "weight": 0.7, "source": "遊戯性" },
+					"sharpness": { "score": 0.4, "weight": 0.6, "source": "強調効果" }
+				}
+			},
+			"ending": {
+				"vowel": {
+					"brightness": { "score": 0.8, "weight": 0.8, "source": "開放的終了" },
+					"softness": { "score": 0.7, "weight": 0.7, "source": "母音の特性" },
+					"heaviness": { "score": 0.4, "weight": 0.6, "source": "軽やかな終了" },
+					"hardness": { "score": 0.3, "weight": 0.7, "source": "開放感" },
+					"sharpness": { "score": 0.4, "weight": 0.6, "source": "終了の曖昧さ" }
+				},
+				"n": {
+					"heaviness": { "score": 0.8, "weight": 0.8, "source": "鼻音の余韻" },
+					"softness": { "score": 0.7, "weight": 0.7, "source": "鼻音の特性" },
+					"brightness": { "score": 0.4, "weight": 0.6, "source": "安定した終了" },
+					"hardness": { "score": 0.4, "weight": 0.6, "source": "締まりある終了" },
+					"sharpness": { "score": 0.3, "weight": 0.6, "source": "鼻音の丸み" }
+				}
+			},
+			"length": {
+				"short": {
+					"hardness": { "score": 0.8, "weight": 0.8, "source": "簡潔性" },
+					"sharpness": { "score": 0.7, "weight": 0.7, "source": "直接性" },
+					"brightness": { "score": 0.6, "weight": 0.6, "source": "明快さ" },
+					"heaviness": { "score": 0.6, "weight": 0.7, "source": "力強さ" },
+					"softness": { "score": 0.3, "weight": 0.6, "source": "簡潔な印象" }
+				},
+				"medium": {
+					"brightness": { "score": 0.6, "weight": 0.6, "source": "バランス" },
+					"softness": { "score": 0.6, "weight": 0.6, "source": "自然さ" },
+					"heaviness": { "score": 0.5, "weight": 0.6, "source": "中庸" },
+					"hardness": { "score": 0.5, "weight": 0.6, "source": "バランス" },
+					"sharpness": { "score": 0.5, "weight": 0.6, "source": "中庸" }
+				},
+				"long": {
+					"softness": { "score": 0.8, "weight": 0.8, "source": "優雅さ" },
+					"heaviness": { "score": 0.7, "weight": 0.7, "source": "複雑性" },
+					"brightness": { "score": 0.6, "weight": 0.6, "source": "流れる印象" },
+					"hardness": { "score": 0.3, "weight": 0.7, "source": "流動性" },
+					"sharpness": { "score": 0.3, "weight": 0.7, "source": "曲線的印象" }
+				}
+			}
+		}
+	}
+}

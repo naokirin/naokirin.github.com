@@ -150,6 +150,31 @@
 				"余韻",
 				"伸びやかさ",
 				"強調"
+			],
+			"a": [
+				"明るい終了",
+				"開放的",
+				"力強い"
+			],
+			"i": [
+				"鋭い終了",
+				"軽やか",
+				"繊細"
+			],
+			"u": [
+				"重厚な終了",
+				"柔らかい",
+				"奥行き"
+			],
+			"e": [
+				"中性的な終了",
+				"バランス",
+				"自然"
+			],
+			"o": [
+				"重厚な終了",
+				"落ち着いた",
+				"丸み"
 			]
 		},
 		"length": {
@@ -913,6 +938,168 @@
 						"score": 0.5,
 						"weight": 0.7,
 						"source": "鼻音の特性"
+					}
+				},
+				"a": {
+					"brightness": {
+						"score": 0.9,
+						"weight": 0.8,
+						"source": "明るい終了音"
+					},
+					"heaviness": {
+						"score": 0.6,
+						"weight": 0.7,
+						"source": "開放的で力強い終了"
+					},
+					"hardness_softness": {
+						"score": 0.2,
+						"weight": 0.7,
+						"source": "開放的な終了"
+					},
+					"sharpness": {
+						"score": 0.3,
+						"weight": 0.6,
+						"source": "丸みのある終了"
+					},
+					"size": {
+						"score": 0.8,
+						"weight": 0.8,
+						"source": "大きい響きの終了"
+					}
+				},
+				"i": {
+					"brightness": {
+						"score": 0.8,
+						"weight": 0.8,
+						"source": "明るい終了音"
+					},
+					"heaviness": {
+						"score": 0.2,
+						"weight": 0.8,
+						"source": "軽やかな終了"
+					},
+					"hardness_softness": {
+						"score": 0.6,
+						"weight": 0.7,
+						"source": "鋭い終了"
+					},
+					"sharpness": {
+						"score": 0.9,
+						"weight": 0.8,
+						"source": "鋭い終了音"
+					},
+					"size": {
+						"score": 0.2,
+						"weight": 0.8,
+						"source": "小さい響きの終了"
+					}
+				},
+				"u": {
+					"brightness": {
+						"score": 0.2,
+						"weight": 0.8,
+						"source": "暗い終了音"
+					},
+					"heaviness": {
+						"score": 0.8,
+						"weight": 0.8,
+						"source": "重厚な終了"
+					},
+					"hardness_softness": {
+						"score": 0.1,
+						"weight": 0.8,
+						"source": "柔らかい終了"
+					},
+					"sharpness": {
+						"score": 0.1,
+						"weight": 0.8,
+						"source": "丸い終了音"
+					},
+					"size": {
+						"score": 0.6,
+						"weight": 0.8,
+						"source": "奥行きのある終了"
+					}
+				},
+				"e": {
+					"brightness": {
+						"score": 0.7,
+						"weight": 0.7,
+						"source": "中程度の明るさの終了"
+					},
+					"heaviness": {
+						"score": 0.4,
+						"weight": 0.7,
+						"source": "中性的な終了"
+					},
+					"hardness_softness": {
+						"score": 0.4,
+						"weight": 0.6,
+						"source": "バランスの取れた終了"
+					},
+					"sharpness": {
+						"score": 0.5,
+						"weight": 0.6,
+						"source": "中性的な終了音"
+					},
+					"size": {
+						"score": 0.5,
+						"weight": 0.7,
+						"source": "中性的な響きの終了"
+					}
+				},
+				"o": {
+					"brightness": {
+						"score": 0.3,
+						"weight": 0.8,
+						"source": "暗い終了音"
+					},
+					"heaviness": {
+						"score": 0.9,
+						"weight": 0.8,
+						"source": "重厚な終了"
+					},
+					"hardness_softness": {
+						"score": 0.2,
+						"weight": 0.7,
+						"source": "柔らかい終了"
+					},
+					"sharpness": {
+						"score": 0.2,
+						"weight": 0.8,
+						"source": "丸い終了音"
+					},
+					"size": {
+						"score": 0.7,
+						"weight": 0.8,
+						"source": "重厚な響きの終了"
+					}
+				},
+				"っ": {
+					"brightness": {
+						"score": 0.6,
+						"weight": 0.8,
+						"source": "弾む終了音"
+					},
+					"heaviness": {
+						"score": 0.3,
+						"weight": 0.8,
+						"source": "軽快な終了"
+					},
+					"hardness_softness": {
+						"score": 0.8,
+						"weight": 0.8,
+						"source": "硬い終了"
+					},
+					"sharpness": {
+						"score": 0.9,
+						"weight": 0.8,
+						"source": "鋭い終了音"
+					},
+					"size": {
+						"score": 0.3,
+						"weight": 0.7,
+						"source": "短い終了"
 					}
 				}
 			},

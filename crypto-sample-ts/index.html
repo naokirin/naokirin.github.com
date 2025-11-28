@@ -303,7 +303,7 @@
 </head>
 
 <body>
-  <div class="container" x-data="window.cryptoApp && window.cryptoApp() || {}">
+  <div class="container" x-data="window.cryptoApp ? window.cryptoApp() : { selectedCrypto: '' }" x-init="if (!window.cryptoApp) { const checkApp = setInterval(() => { if (window.cryptoApp) { Object.assign($data, window.cryptoApp()); clearInterval(checkApp); } }, 50); }">
     <h1>🔐 暗号技術サンプルデモ</h1>
 
     <div class="section">

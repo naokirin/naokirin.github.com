@@ -303,7 +303,8 @@
 </head>
 
 <body>
-  <div class="container" x-data="window.cryptoApp ? window.cryptoApp() : { selectedCrypto: '' }" x-init="if (!window.cryptoApp) { const checkApp = setInterval(() => { if (window.cryptoApp) { Object.assign($data, window.cryptoApp()); clearInterval(checkApp); } }, 50); }">
+  <div class="container" x-data="window.cryptoApp ? window.cryptoApp() : { selectedCrypto: '' }"
+    x-init="if (!window.cryptoApp) { const checkApp = setInterval(() => { if (window.cryptoApp) { Object.assign($data, window.cryptoApp()); clearInterval(checkApp); } }, 50); }">
     <h1>🔐 暗号技術サンプルデモ</h1>
 
     <div class="section">
@@ -353,6 +354,12 @@
             鍵長: 256ビット (32バイト)<br />
             IV長: 96ビット (12バイト)<br />
             認証タグ長: 128ビット (16バイト)
+          </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/symmetric/aes.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
           </div>
 
           <div class="step">
@@ -584,6 +591,12 @@
             ノンス長: 192ビット (24バイト)<br />
             認証タグ長: 128ビット (16バイト)
           </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/symmetric/chacha20.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
+          </div>
 
           <div class="step">
             <div class="step-title">
@@ -794,6 +807,12 @@
             <strong>初期化パラメータ:</strong><br />
             鍵長: 256ビット (32バイト)<br />
             認証タグ長: 128ビット (16バイト)
+          </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/symmetric/poly1305.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
           </div>
 
           <div class="step">
@@ -1052,6 +1071,12 @@
             • ARX構造<br />
             • 64ビット（8バイト）の固定長出力<br />
             • 短いメッセージに特化した高速なMAC
+          </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/hash/siphash.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
           </div>
 
           <!-- Input Section -->
@@ -1316,6 +1341,12 @@
               <option :value="4096">4096ビット</option>
             </select><br />
             RSA-OAEPパディングを使用
+          </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/asymmetric/rsa.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
           </div>
 
           <!-- モード選択タブ -->
@@ -1764,6 +1795,12 @@
               <option value="ed448">Ed448 (EdDSA)</option>
             </select>
           </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/asymmetric/ecc.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
+          </div>
 
           <!-- モード選択タブ -->
           <div class="mode-tabs" x-show="eccState.keyPair">
@@ -2163,6 +2200,12 @@
           <div class="info">
             <strong>Boneh-Franklin IBEスキーム</strong><br />
             IDベース暗号は、公開鍵がユーザーのアイデンティティ（メールアドレスなど）である暗号方式です。
+          </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/asymmetric/ibe.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
           </div>
 
           <!-- 初期化 -->
@@ -2598,6 +2641,12 @@
               ※ 本実装は簡易版のため、属性の完全一致のみを許容しています。実際のCP-ABEでは、AND/ORなどの論理演算を含む複雑なポリシー構造をサポートできます。
             </span>
           </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/asymmetric/abe.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
+          </div>
 
           <!-- 初期化 -->
           <div class="subsection">
@@ -2988,6 +3037,12 @@
             • 256ビット（32バイト）の固定長出力<br />
             • 広く使用されている実績のあるアルゴリズム
           </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/hash/sha256.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
+          </div>
 
           <!-- Input Section -->
           <div class="step">
@@ -3284,6 +3339,12 @@
             • 512ビット（64バイト）の固定長出力<br />
             • 広く使用されている実績のあるアルゴリズム
           </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/hash/sha512.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
+          </div>
 
           <!-- Input Section -->
           <div class="step">
@@ -3579,6 +3640,12 @@
             • 出力サイズ（ビット）<br />
             • ハッシュ値（16進数）
           </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/tree/main/src/hash" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
+          </div>
 
           <!-- Input Section -->
           <div class="step">
@@ -3797,6 +3864,12 @@
             • Sponge構造（Keccak）<br />
             • 256ビット（32バイト）の固定長出力<br />
             • SHA-2とは異なる構造で、将来の安全性を考慮
+          </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/hash/sha3-256.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
           </div>
 
           <!-- Input Section -->
@@ -4042,6 +4115,12 @@
             • 512ビット（64バイト）の固定長出力<br />
             • 暗号通貨などで広く採用
           </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/hash/blake2b.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
+          </div>
 
           <!-- Input Section -->
           <div class="step">
@@ -4259,6 +4338,12 @@
             • 256ビット（32バイト）の固定長出力<br />
             • 非常に高速な実装
           </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/hash/blake3.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
+          </div>
 
           <!-- Input Section -->
           <div class="step">
@@ -4465,6 +4550,12 @@
             <span style="font-size: 0.9em; color: #e8f4f8; font-style: italic;">
               ※ この実装はWebAssemblyでコンパイルされたRust実装を使用しています。
             </span>
+          </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/post-quantum/kyber.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
           </div>
 
           <!-- 初期化 -->
@@ -4885,6 +4976,12 @@
               ※ この実装はWebAssemblyでコンパイルされたRust実装を使用しています。ML-DSA-65（推奨レベル）を実装しています。
             </span>
           </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/post-quantum/dilithium.ts"
+              target="_blank" rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
+          </div>
 
           <!-- 初期化 -->
           <div class="subsection">
@@ -5275,6 +5372,12 @@
           SWP（Song, Wagner, Perrig）スキームを使用して実装されています。<br />
           <strong>特徴:</strong> データはAESで暗号化され、キーワードから生成されたタグを使用して検索が可能です。
         </div>
+        <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+          <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/searchable/sse.ts" target="_blank"
+            rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+            📄 ソースコードをGitHubで確認
+          </a>
+        </div>
 
         <!-- 鍵生成 -->
         <div class="subsection">
@@ -5472,6 +5575,12 @@
             <span style="font-size: 0.9em; color: #e8f4f8; font-style: italic;">
               ※ この実装はWebAssemblyでコンパイルされたRust実装（falcon-rust）を使用しています。FALCON-512を実装しています。
             </span>
+          </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/post-quantum/falcon.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
           </div>
 
           <!-- 初期化 -->

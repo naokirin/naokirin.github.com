@@ -118,7 +118,6 @@
       border-radius: 4px;
       font-family: "Courier New", monospace;
       font-size: 13px;
-      white-space: pre-wrap;
       word-break: break-all;
       margin-top: 10px;
       overflow-x: auto;
@@ -300,7 +299,7 @@
       font-family: "Courier New", monospace;
     }
   </style>
-  <script type="module" crossorigin src="/assets/index-Cnv6E3zc.js"></script>
+  <script type="module" crossorigin src="./assets/index-BJN8_nOb.js"></script>
 </head>
 
 <body>
@@ -338,6 +337,9 @@
           <option value="kyber">CRYSTALS-Kyber (ML-KEM)</option>
           <option value="dilithium">CRYSTALS-Dilithium (ML-DSA)</option>
           <option value="falcon">FALCON (FN-DSA)</option>
+        </optgroup>
+        <optgroup label="検索可能暗号 (Searchable Encryption)">
+          <option value="sse">SSE (Searchable Symmetric Encryption)</option>
         </optgroup>
       </select>
     </div>
@@ -5263,6 +5265,201 @@
       </div>
     </template>
 
+    <!-- SSE (Searchable Symmetric Encryption) -->
+    <template x-if="selectedCrypto === 'sse'">
+      <div class="section">
+        <h2>検索可能対称暗号 (SSE: Searchable Symmetric Encryption)</h2>
+        <div style="margin-bottom: 20px; padding: 15px; background: #e8f4f8; border-radius: 6px; font-size: 14px;">
+          <strong>検索可能暗号とは:</strong><br />
+          検索可能暗号は、暗号化されたデータに対して直接検索を行うことを可能にする暗号技術です。<br />
+          SWP（Song, Wagner, Perrig）スキームを使用して実装されています。<br />
+          <strong>特徴:</strong> データはAESで暗号化され、キーワードから生成されたタグを使用して検索が可能です。
+        </div>
+
+        <!-- 鍵生成 -->
+        <div class="subsection">
+          <h3>
+            <button class="detail-toggle"
+              @click="sseState.showDetails.keyGeneration = !sseState.showDetails.keyGeneration"
+              x-show="sseState.masterKey">
+              <span x-show="!sseState.showDetails.keyGeneration">詳細を表示</span>
+              <span x-show="sseState.showDetails.keyGeneration">詳細を隠す</span>
+            </button>
+            1. マスター鍵生成
+          </h3>
+          <button @click="generateSSEKey()">マスター鍵を生成</button>
+          <div x-show="sseState.masterKey" class="output">
+            <div><strong>マスター鍵:</strong> <span x-text="formatBytes(sseState.masterKey)"></span></div>
+            <div><strong>鍵サイズ:</strong> <span x-text="sseState.masterKey?.length"></span> バイト（256ビット）</div>
+          </div>
+        </div>
+
+        <!-- 暗号化 -->
+        <div class="subsection">
+          <h3>
+            <button class="detail-toggle" @click="sseState.showDetails.encryption = !sseState.showDetails.encryption"
+              x-show="sseState.encryptedDocument">
+              <span x-show="!sseState.showDetails.encryption">詳細を表示</span>
+              <span x-show="sseState.showDetails.encryption">詳細を隠す</span>
+            </button>
+            2. ドキュメントの暗号化
+          </h3>
+          <label>平文:</label>
+          <textarea x-model="sseState.plaintext" placeholder="暗号化するテキストを入力"
+            @input="sseState.error = ''; sseState.encryptedDocument = null;"></textarea>
+          <label style="margin-top: 15px;">キーワード（カンマ区切りまたは改行区切り）:</label>
+          <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+            <input type="text" x-model="sseState.keywordInput" placeholder="キーワードを入力" @keyup.enter="addKeyword()"
+              style="flex: 1;">
+            <button @click="addKeyword()">追加</button>
+          </div>
+          <div x-show="sseState.keywords.length > 0" style="margin-bottom: 10px;">
+            <div style="display: flex; flex-wrap: wrap; gap: 5px;">
+              <template x-for="(keyword, index) in sseState.keywords" :key="index">
+                <span
+                  style="background: #3498db; color: white; padding: 5px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
+                  <span x-text="keyword"></span>
+                  <button @click="removeKeyword(index)"
+                    style="background: transparent; border: none; color: white; cursor: pointer; padding: 0; margin-left: 5px;">×</button>
+                </span>
+              </template>
+            </div>
+          </div>
+          <button @click="encryptSSE()"
+            :disabled="!sseState.masterKey || !sseState.plaintext || sseState.keywords.length === 0">暗号化</button>
+          <div x-show="sseState.encryptedDocument" class="output" style="margin-top: 10px;">
+            <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">
+              ✅ 暗号化が完了しました。ドキュメントが追加されました。
+            </div>
+            <div><strong>暗号文:</strong> <span x-text="formatBytes(sseState.encryptedDocument?.ciphertext)"></span></div>
+            <div><strong>認証タグ:</strong> <span x-text="formatBytes(sseState.encryptedDocument?.authTag)"></span></div>
+            <div><strong>IV:</strong> <span x-text="formatBytes(sseState.encryptedDocument?.iv)"></span></div>
+            <div><strong>キーワードタグ数:</strong> <span x-text="sseState.encryptedDocument?.keywordTags?.length || 0"></span>
+            </div>
+            <div style="margin-top: 10px;">
+              <strong>キーワードタグ:</strong>
+              <div style="font-size: 12px; margin-top: 5px;">
+                <template x-for="(tag, index) in sseState.encryptedDocument?.keywordTags || []" :key="index">
+                  <div style="margin-bottom: 5px;">
+                    <span x-text="'タグ ' + (index + 1) + ': ' + formatBytes(tag)"></span>
+                  </div>
+                </template>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 暗号化済みドキュメント一覧 -->
+        <div class="subsection" x-show="sseState.documents.length > 0">
+          <h3>暗号化済みドキュメント一覧</h3>
+          <div style="margin-bottom: 10px;">
+            <strong>ドキュメント数:</strong> <span x-text="sseState.documents.length"></span> 件
+          </div>
+          <div style="max-height: 300px; overflow-y: auto; border: 1px solid #ddd; border-radius: 4px; padding: 10px;">
+            <template x-for="(item, index) in sseState.documents" :key="index">
+              <div
+                style="border: 1px solid #ddd; padding: 10px; margin: 5px 0; border-radius: 4px; background: #f9f9f9;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <div><strong>ドキュメント #<span x-text="index + 1"></span></strong></div>
+                    <div style="font-size: 12px; margin-top: 5px; color: #666;">
+                      <div>ID: <span x-text="formatBytes(item.id?.slice(0, 8)) + '...'"></span></div>
+                      <div>暗号文サイズ: <span x-text="item.document?.ciphertext?.length || 0"></span> バイト</div>
+                      <div>キーワードタグ数: <span x-text="item.document?.keywordTags?.length || 0"></span></div>
+                    </div>
+                  </div>
+                  <div>
+                    <button @click="selectDocument(item.id)"
+                      style="padding: 5px 10px; font-size: 12px; margin-right: 5px;">
+                      選択
+                    </button>
+                    <button @click="sseState.documents.splice(index, 1); sseState.encryptedDocument = null;"
+                      style="padding: 5px 10px; font-size: 12px; background: #e74c3c;">削除</button>
+                  </div>
+                </div>
+                <div
+                  x-show="sseState.selectedDocumentId && Array.from(sseState.selectedDocumentId).every((b, i) => b === item.id[i])"
+                  style="margin-top: 5px; color: #27ae60; font-size: 12px; font-weight: bold;">
+                  ✓ 選択中
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+
+        <!-- 検索 -->
+        <div class="subsection">
+          <h3>
+            <button class="detail-toggle" @click="sseState.showDetails.search = !sseState.showDetails.search"
+              x-show="sseState.searchResults.length > 0">
+              <span x-show="!sseState.showDetails.search">詳細を表示</span>
+              <span x-show="sseState.showDetails.search">詳細を隠す</span>
+            </button>
+            3. 検索
+          </h3>
+          <label>検索キーワード:</label>
+          <input type="text" x-model="sseState.searchKeyword" placeholder="検索するキーワードを入力"
+            @input="sseState.error = ''; sseState.searchResults = [];">
+          <button @click="searchSSE()"
+            :disabled="!sseState.masterKey || !sseState.searchKeyword || sseState.documents.length === 0">検索</button>
+          <div x-show="sseState.searchTag" class="output">
+            <div><strong>検索タグ:</strong> <span
+                style="word-break: keep-all; white-space: nowrap; overflow-x: auto; display: inline-block;"
+                x-text="formatBytes(sseState.searchTag)"></span></div>
+            <div><strong>検索結果:</strong> <span x-text="sseState.searchResults.length"></span> 件のドキュメントが見つかりました</div>
+            <div x-show="sseState.searchResults.length > 0" style="margin-top: 10px;">
+              <template x-for="(item, index) in sseState.searchResults" :key="index">
+                <div style="border: 1px solid #ddd; padding: 10px; margin: 5px 0; border-radius: 4px;">
+                  <div><strong>ドキュメント #<span x-text="index + 1"></span></strong></div>
+                  <div style="font-size: 12px; margin-top: 5px;">
+                    <div>暗号文: <span
+                        style="word-break: keep-all; white-space: nowrap; overflow-x: auto; display: inline-block;"
+                        x-text="formatBytes(item.document?.ciphertext?.slice(0, 32)) + '...'"></span></div>
+                    <div>キーワードタグ数: <span x-text="item.document?.keywordTags?.length || 0"></span></div>
+                  </div>
+                  <!-- 検索結果が複数件の場合のみ選択ボタンを表示 -->
+                  <div x-show="sseState.searchResults.length > 1" style="margin-top: 5px;">
+                    <button @click="selectDocument(item.id)"
+                      style="padding: 5px 10px; font-size: 12px;">このドキュメントを選択</button>
+                    <span
+                      x-show="sseState.selectedDocumentId && Array.from(sseState.selectedDocumentId).every((b, i) => b === item.id[i])"
+                      style="margin-left: 10px; color: #27ae60; font-weight: bold;">✓ 選択中</span>
+                  </div>
+                  <!-- 検索結果が1件の場合は自動選択されたことを表示 -->
+                  <div x-show="sseState.searchResults.length === 1"
+                    style="margin-top: 5px; color: #27ae60; font-size: 12px;">
+                    ✓ 自動的に選択されました（復号化ボタンで復号化できます）
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+
+        <!-- 復号化 -->
+        <div class="subsection">
+          <h3>
+            <button class="detail-toggle" @click="sseState.showDetails.decryption = !sseState.showDetails.decryption"
+              x-show="sseState.decrypted">
+              <span x-show="!sseState.showDetails.decryption">詳細を表示</span>
+              <span x-show="sseState.showDetails.decryption">詳細を隠す</span>
+            </button>
+            4. 復号化
+          </h3>
+          <button @click="decryptSSE()" :disabled="!sseState.masterKey || !sseState.selectedDocumentId">復号化</button>
+          <div x-show="sseState.decrypted" class="output">
+            <div><strong>復号された平文:</strong></div>
+            <div
+              style="background: #f0f0f0; color: #333; padding: 10px; border-radius: 4px; margin-top: 5px; white-space: pre-wrap;"
+              x-text="sseState.decrypted"></div>
+          </div>
+        </div>
+
+        <div x-show="sseState.error" style="color: #e74c3c; margin-top: 10px;" x-text="sseState.error">
+        </div>
+      </div>
+    </template>
+
     <!-- Post-Quantum Cryptography - FALCON -->
     <template x-if="selectedCrypto === 'falcon'">
       <div>
@@ -5282,8 +5479,7 @@
             <h3>1. 初期化</h3>
             <button @click="initFalcon()" :disabled="falconState.initialized">WebAssemblyモジュールを初期化</button>
             <div x-show="falconState.initialized" class="output">✅ 初期化完了</div>
-            <div x-show="falconState.showDetails.initialization && falconState.initialized"
-              class="detail-section">
+            <div x-show="falconState.showDetails.initialization && falconState.initialized" class="detail-section">
               <div class="data-box">
                 <div class="data-box-header">初期化完了</div>
                 <div class="data-box-content">
@@ -5369,8 +5565,7 @@
           <!-- 署名 -->
           <div class="subsection">
             <h3>
-              <button class="detail-toggle"
-                @click="falconState.showDetails.signing = !falconState.showDetails.signing"
+              <button class="detail-toggle" @click="falconState.showDetails.signing = !falconState.showDetails.signing"
                 x-show="falconState.signature">
                 <span x-show="!falconState.showDetails.signing">詳細を表示</span>
                 <span x-show="falconState.showDetails.signing">詳細を隠す</span>
@@ -5380,8 +5575,7 @@
             <label>署名するメッセージ:</label>
             <textarea x-model="falconState.message" placeholder="署名するメッセージを入力"
               @input="falconState.error = ''; falconState.signature = null;"></textarea>
-            <button @click="signFalcon()"
-              :disabled="!falconState.privateKey || !falconState.message">署名</button>
+            <button @click="signFalcon()" :disabled="!falconState.privateKey || !falconState.message">署名</button>
             <div x-show="falconState.signature" class="output">
               <div><strong>署名:</strong> <span x-text="formatBytes(falconState.signature)"></span></div>
               <div><strong>署名サイズ:</strong> <span x-text="falconState.signature?.length"></span> バイト（約666バイト）</div>
@@ -5417,8 +5611,8 @@
                 <div class="arrow">→</div>
                 <div class="data-box">
                   <div class="data-box-label">5. 署名をバイト配列にシリアライズ</div>
-                  <div class="data-box-content"
-                    x-text="formatBytesReadable(falconState.signature?.slice(0, 16) || [])"></div>
+                  <div class="data-box-content" x-text="formatBytesReadable(falconState.signature?.slice(0, 16) || [])">
+                  </div>
                   <div class="param-label">
                     署名サイズ: <span x-text="falconState.signature?.length || 0"></span> バイト
                   </div>
@@ -5464,7 +5658,8 @@
               <div class="data-flow">
                 <div class="data-box">
                   <div class="data-box-label">1. 検証するメッセージをバイト配列に変換</div>
-                  <div class="data-box-content" x-text="formatBytesReadable(falconState.verificationMessageBytes)"></div>
+                  <div class="data-box-content" x-text="formatBytesReadable(falconState.verificationMessageBytes)">
+                  </div>
                 </div>
                 <div class="arrow">→</div>
                 <div class="data-box">

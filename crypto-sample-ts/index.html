@@ -299,7 +299,7 @@
       font-family: "Courier New", monospace;
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-BJN8_nOb.js"></script>
+  <script type="module" crossorigin src="./assets/index-_sHlTOLW.js"></script>
 </head>
 
 <body>
@@ -320,7 +320,8 @@
           <option value="rsa">RSA (Rivest-Shamir-Adleman)</option>
           <option value="ecc">ECC (Elliptic Curve Cryptography)</option>
           <option value="ibe">IBE (Identity-Based Encryption)</option>
-          <option value="abe">ABE (Attribute-Based Encryption)</option>
+          <option value="abe">CP-ABE (Ciphertext-Policy Attribute-Based Encryption)</option>
+          <option value="kpabe">KP-ABE (Key-Policy Attribute-Based Encryption)</option>
         </optgroup>
         <optgroup label="ハッシュ関数">
           <option value="hash-sha256">SHA-256 (256-bit)</option>
@@ -3017,6 +3018,160 @@
           </div>
 
           <div x-show="abeState.error" style="color: #e74c3c; margin-top: 10px;" x-text="abeState.error"></div>
+        </div>
+      </div>
+    </template>
+
+    <!-- KP-ABE (Key-Policy Attribute-Based Encryption) -->
+    <template x-if="selectedCrypto === 'kpabe'">
+      <div>
+        <div class="section">
+          <h2>KP-ABE (Key-Policy Attribute-Based Encryption) の動作</h2>
+          <div class="info">
+            <strong>KP-ABE (Key-Policy Attribute-Based Encryption) スキーム</strong><br />
+            KP-ABEは、鍵生成時にアクセスポリシーを指定し、暗号化時に属性セットを指定する属性ベース暗号方式です。<br />
+            CP-ABEとは逆で、鍵にポリシーが埋め込まれ、暗号文に属性が埋め込まれます。<br />
+            <span style="font-size: 0.9em; color: #e8f4f8; font-style: italic;">
+              ※ 本実装は簡易版のため、属性の完全一致のみを許容しています。実際のKP-ABEでは、AND/ORなどの論理演算を含む複雑なポリシー構造をサポートできます。
+            </span>
+          </div>
+          <div style="margin-top: 10px; padding: 10px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <a href="https://github.com/naokirin/crypto-sample-ts/blob/main/src/asymmetric/abe.ts" target="_blank"
+              rel="noopener noreferrer" style="color: #0366d6; text-decoration: none;">
+              📄 ソースコードをGitHubで確認
+            </a>
+          </div>
+
+          <!-- 初期化 -->
+          <div class="subsection">
+            <h3>1. 初期化</h3>
+            <button @click="initializeKPABE()" :disabled="kpabeState.initialized">WebAssemblyモジュールを初期化</button>
+            <div x-show="kpabeState.initialized" class="output">✅ 初期化完了</div>
+            <div x-show="kpabeState.showDetails.initialization && kpabeState.initialized" class="detail-section">
+              <div class="data-box">
+                <div class="data-box-header">初期化完了</div>
+                <div class="data-box-content">
+                  KP-ABEスキームが使用可能になりました。Setup、KeyGen、Encrypt、Decryptの各操作を実行できます。
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- マスター鍵生成 -->
+          <div class="subsection">
+            <h3>
+              <button class="detail-toggle"
+                @click="kpabeState.showDetails.keyGeneration = !kpabeState.showDetails.keyGeneration"
+                x-show="kpabeState.masterKey">
+                <span x-show="!kpabeState.showDetails.keyGeneration">詳細を表示</span>
+                <span x-show="kpabeState.showDetails.keyGeneration">詳細を隠す</span>
+              </button>
+              2. マスター鍵ペアの生成
+            </h3>
+            <button @click="generateKPABEKeyPair()" :disabled="!kpabeState.initialized">マスター鍵ペアを生成</button>
+            <div x-show="kpabeState.masterKey" class="output">
+              <div>マスター鍵: <span x-text="formatBytes(kpabeState.masterKey?.secret || null)"></span></div>
+              <div>公開パラメータ: <span x-text="formatBytes(kpabeState.publicParams?.params || null)"></span></div>
+            </div>
+          </div>
+
+          <!-- 秘密鍵生成（ポリシーから） -->
+          <div class="subsection">
+            <h3>
+              <button class="detail-toggle"
+                @click="kpabeState.showDetails.keyExtraction = !kpabeState.showDetails.keyExtraction"
+                x-show="kpabeState.privateKey">
+                <span x-show="!kpabeState.showDetails.keyExtraction">詳細を表示</span>
+                <span x-show="kpabeState.showDetails.keyExtraction">詳細を隠す</span>
+              </button>
+              3. ポリシーから秘密鍵を生成
+            </h3>
+            <label>アクセスポリシー（カンマ区切りの属性、例: A,B,C）:</label>
+            <div style="font-size: 0.85em; color: #555; margin-bottom: 5px; font-style: italic;">
+              ※ KP-ABEでは、鍵生成時にポリシーを指定します。このポリシーが鍵に埋め込まれます。
+            </div>
+            <input type="text" x-model="kpabeState.policy" placeholder="A,B,C" />
+            <button @click="extractKPABEKey()" :disabled="!kpabeState.masterKey || !kpabeState.policy">秘密鍵を生成</button>
+            <div x-show="kpabeState.privateKey" class="output">
+              秘密鍵: <span x-text="formatBytes(kpabeState.privateKey?.key || null)"></span><br />
+              ポリシー: <span x-text="kpabeState.privateKey?.attributes?.join(', ') || ''"></span>
+            </div>
+          </div>
+
+          <!-- 暗号化（属性セットから） -->
+          <div class="subsection">
+            <h3>
+              <button class="detail-toggle"
+                @click="kpabeState.showDetails.encryption = !kpabeState.showDetails.encryption"
+                x-show="kpabeState.ciphertext">
+                <span x-show="!kpabeState.showDetails.encryption">詳細を表示</span>
+                <span x-show="kpabeState.showDetails.encryption">詳細を隠す</span>
+              </button>
+              4. メッセージの暗号化（属性セットから）
+            </h3>
+            <label>属性を追加（1つずつ、またはカンマ区切りで複数、例: A または A, B, C）:</label>
+            <div style="font-size: 0.85em; color: #555; margin-bottom: 5px; font-style: italic;">
+              ※ KP-ABEでは、暗号化時に属性セットを指定します。この属性セットが暗号文に埋め込まれます。
+            </div>
+            <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+              <input type="text" x-model="kpabeState.attributeInput" placeholder="属性名を入力（例: A または A, B, C）"
+                style="flex: 1;" />
+              <button @click="addKPABEAttribute()">属性を追加</button>
+            </div>
+            <div x-show="kpabeState.attributes.length > 0" style="margin-bottom: 10px;">
+              <strong>属性セット:</strong>
+              <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px;">
+                <template x-for="(attr, index) in kpabeState.attributes" :key="index">
+                  <span
+                    style="background: #3498db; color: white; padding: 5px 10px; border-radius: 4px; display: inline-flex; align-items: center; gap: 5px;">
+                    <span x-text="attr"></span>
+                    <button @click="removeKPABEAttribute(index)"
+                      style="background: rgba(255,255,255,0.3); border: none; color: white; cursor: pointer; padding: 2px 5px; border-radius: 2px;">×</button>
+                  </span>
+                </template>
+              </div>
+            </div>
+            <label>平文:</label>
+            <textarea x-model="kpabeState.plaintext" placeholder="暗号化するメッセージを入力"></textarea>
+            <button @click="encryptKPABE()"
+              :disabled="!kpabeState.publicParams || kpabeState.attributes.length === 0 || !kpabeState.plaintext">暗号化</button>
+            <div x-show="kpabeState.ciphertext" class="output">
+              暗号文: <span x-text="formatBytes(kpabeState.ciphertext || null)"></span>
+            </div>
+          </div>
+
+          <!-- 復号化 -->
+          <div class="subsection">
+            <h3>
+              <button class="detail-toggle"
+                @click="kpabeState.showDetails.decryption = !kpabeState.showDetails.decryption"
+                x-show="kpabeState.decryptionSucceeded !== null">
+                <span x-show="!kpabeState.showDetails.decryption">詳細を表示</span>
+                <span x-show="kpabeState.showDetails.decryption">詳細を隠す</span>
+              </button>
+              5. 暗号文の復号化
+            </h3>
+            <button @click="decryptKPABE()" :disabled="!kpabeState.privateKey || !kpabeState.ciphertext">復号化</button>
+            <div x-show="kpabeState.decryptionSucceeded !== null" style="margin-top: 15px;">
+              <div class="data-box"
+                :style="kpabeState.decryptionSucceeded ? 'border-left-color: #2ecc71;' : 'border-left-color: #e74c3c;'">
+                <div class="data-box-label">復号化結果</div>
+                <div class="data-box-content">
+                  <span x-show="kpabeState.decryptionSucceeded" style="color: #2ecc71; font-weight: bold">
+                    ✓ 復号化成功
+                  </span>
+                  <span x-show="!kpabeState.decryptionSucceeded" style="color: #e74c3c; font-weight: bold">
+                    ✗ 復号化失敗（属性が一致しません）
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div x-show="kpabeState.decrypted && kpabeState.decryptionSucceeded" class="output">
+              復号化されたメッセージ: <span x-text="kpabeState.decrypted"></span>
+            </div>
+          </div>
+
+          <div x-show="kpabeState.error" style="color: #e74c3c; margin-top: 10px;" x-text="kpabeState.error"></div>
         </div>
       </div>
     </template>

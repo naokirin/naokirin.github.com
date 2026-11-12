@@ -6,7 +6,7 @@
  * ビルド時のキャッシュ名注入なしに「更新したのに古い画面が表示され続ける」事故を防ぐ。
  */
 const CACHE_NAME = "monolystar-shell-v1";
-const APP_SHELL_URL = "./";
+const APP_SHELL_URL = "/monolystar/";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
